@@ -1,0 +1,4 @@
+The following tables provide results obtained from the analog code. The two cases – 10 and 50 regions used for the calculations are provided. For the second case, only the figure is provided. The following conclusions can be made from the results:
+1.	It is seen that as the number of regions are increased, the estimation of the scalar flux establishes a more or less constant value throughout the region.
+2.	The above behavior is in-line with the variation of relative error. The relative error when 10 regions are considered increases as the region moves away from the particle source, when 50 regions are considered, the relative error is more or less constant.
+3.	Both the types of estimators provide similar estimates of scalar flux in most of the regions.
