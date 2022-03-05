@@ -101,8 +101,7 @@ struct sBITSET {
     std::string subset_string(num_cities, '0');
     auto& subset = v[i];
 
-    for (int i = 0; i < subset.size(); i++) {
-      const int j = subset[i];
+    for (auto& j : subset) {
       subset_string[j] = '1';
     }
 
@@ -110,9 +109,10 @@ struct sBITSET {
   }
 
   void populate_subset_map() {
-    for (long index = 0; index < v.size(); index++) {
+    long index = 0;
+    for (auto& subset : v) {
       std::string subset_string = get_subset_string(index);
-      map[subset_string] = index;
+      map[subset_string] = index++;
     }
   }
 
@@ -192,16 +192,13 @@ int main(const int argc, const char* argv[]) {
   A[0][0] = 0;
 
   for (long subset_index = 1; subset_index < all_subsets.v.size(); subset_index++) {
-    if (subset_index % 100000 == 0) std::cout << "At subset index " << subset_index << " out of " << num_subsets << "\n";
     const std::vector<int>& subset = all_subsets.v[subset_index];
 
-    for (int jj = 0; jj < subset.size(); jj++) {
-      const int j = subset[jj];
+    for (auto& j : subset) {
       if (j == 0) continue;
 
       double min_value = INF;
-      for (int kk = 0; kk < subset.size(); kk++) {
-        const int k = subset[kk];
+      for (auto& k : subset) {
         if (k == j) continue;
 
         min_value = MIN(min_value, A[all_subsets.index_without(subset_index, j)][k] + cities.get_distance(k, j));
